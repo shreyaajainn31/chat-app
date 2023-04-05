@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -68,6 +69,11 @@ func (c *Client) writePump() {
 	}
 }
 
+// define a struct to match the JSON object sent by the client
+type PasswordMessage struct {
+	Password string `json:"password"`
+}
+
 func handleWebSocketConnection(writer http.ResponseWriter, request *http.Request) {
 	webSocketConnection, err := upgrader.Upgrade(writer, request, nil)
 	if err != nil {
@@ -75,26 +81,24 @@ func handleWebSocketConnection(writer http.ResponseWriter, request *http.Request
 		return
 	}
 
-	// We will get the password from the user and check if it is valid or not
-	// In order it to be valid then password should not be empty
-	// Password should be equal to your password
-
-	var passwordFromUser string
-	err = webSocketConnection.ReadJSON(&passwordFromUser)
+	// read the password from the PasswordMessage struct
+	var passwordMessage PasswordMessage
+	err = webSocketConnection.ReadJSON(&passwordMessage)
+	fmt.Println(passwordMessage.Password)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
-	// For now I have kept password as "PASSWORD" but it can be later changed to anything else
-	// If the password is not equal to that then invalid password error will be displayed
-	if passwordFromUser != "PASSWORD" {
+	// check if the password is correct
+	if passwordMessage.Password != "PASSWORD" {
 		log.Println("Invalid password")
+		webSocketConnection.WriteJSON(map[string]bool{"success": false})
 		return
 	}
 
-	//If we have the correct password then we need to register the user
-	// to access the chat room
+	// send success message if password is correct
+	webSocketConnection.WriteJSON(map[string]bool{"success": true})
 
 	user := &Client{socket: webSocketConnection, send: make(chan []byte)}
 	hub.register <- user
@@ -102,11 +106,12 @@ func handleWebSocketConnection(writer http.ResponseWriter, request *http.Request
 	go user.writePump()
 	go user.readPump()
 }
+
 func main() {
 	http.HandleFunc("/ws", handleWebSocketConnection)
 
 	// will start the server now
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":3007", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe", err)
 	}
