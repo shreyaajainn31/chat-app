@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Chatroom from "./components/Chatroom";
+import Login from "./components/Login/Login";
+import Chatroom from "./components/Chatroom/Chatroom";
 import './App.css';
 
 
