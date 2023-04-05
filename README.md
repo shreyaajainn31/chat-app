@@ -11,22 +11,17 @@
    ### Running the frontend
    Now, open the terminal run the commands in following order:
       
-      ```cd frontend```
-      <br/>
-      ```npm install```
-      <br/>
-      ```npm install react-router-dom```
-      <br/>
-      ```npm start```
+      - cd frontend
+      - npm install
+      - npm install react-router-dom
+      - npm start
 
 
    ### Running the backend
 
    Open the terminal and run the following commands:
-      <br/>
-      ```go get github.com/gorilla/websocket```
-      <br/>
-      ```go run main.go```
+      - go get github.com/gorilla/websocket
+      - go run main.go
 
   
    

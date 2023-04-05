@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -12,6 +13,7 @@ function Login() {
     setPassword(e.target.value);
     setPasswordError("");
   };
+
 
   const handleButton = (e) => {
     e.preventDefault();
@@ -44,9 +46,12 @@ function Login() {
   return (
     <div className="login">
       <br />
+      <br />
+      <label htmlFor="user"> Enter User Name</label>
+      <input placeholder="username" type="text" value={user} onChange={e=> setUser(e.target.value)}/>
+      <br/>
+      <br/>
       <label htmlFor="code">Enter Verification Code</label>
-      <br />
-      <br />
       <input
         placeholder="Room password"
         value={password}
