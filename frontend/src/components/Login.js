@@ -18,7 +18,7 @@ function Login(){
     return(
         <div className = "login">
             <br/>
-            <lable for = "code"> Verification Code </lable>
+            <lable for = "code"> Enter Verification Code </lable>
             <br/>
             <br/>
             <input type="text" placeholder="Room password" value = {password} onChange={handlePassword}/>
