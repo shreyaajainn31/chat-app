@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
 	"net/http"
 
@@ -28,8 +28,9 @@ var hub = Hub{
 }
 
 var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
 }
 
 // Define the method to read messages from a client's socket connection
@@ -84,7 +85,6 @@ func handleWebSocketConnection(writer http.ResponseWriter, request *http.Request
 	// read the password from the PasswordMessage struct
 	var passwordMessage PasswordMessage
 	err = webSocketConnection.ReadJSON(&passwordMessage)
-	fmt.Println(passwordMessage.Password)
 	if err != nil {
 		log.Println(err)
 		return
@@ -93,12 +93,14 @@ func handleWebSocketConnection(writer http.ResponseWriter, request *http.Request
 	// check if the password is correct
 	if passwordMessage.Password != "PASSWORD" {
 		log.Println("Invalid password")
-		webSocketConnection.WriteJSON(map[string]bool{"success": false})
+		response, _ := json.Marshal(map[string]bool{"success": false})
+		webSocketConnection.WriteMessage(websocket.TextMessage, response)
 		return
 	}
 
 	// send success message if password is correct
-	webSocketConnection.WriteJSON(map[string]bool{"success": true})
+	response, _ := json.Marshal(map[string]bool{"success": true})
+	webSocketConnection.WriteMessage(websocket.TextMessage, response)
 
 	user := &Client{socket: webSocketConnection, send: make(chan []byte)}
 	hub.register <- user

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Chatroom from "./Chatroom";
 import "./Login.css";
 
 function Login() {
@@ -34,7 +35,7 @@ function Login() {
       if (!response.success) {
         setPasswordError("Invalid password");
       } else {
-        navigate("/chatroom");
+        navigate("/chatroom",  { state: { user } });
       }
     };
 
@@ -62,6 +63,8 @@ function Login() {
       <br />
       <br />
       <button onClick={handleButton}>Join Room</button>
+      
+
     </div>
   );
 }
