@@ -1,0 +1,15 @@
+.login{
+    margin-top: 10rem;
+    border: 1px solid;
+    height: 7cm;
+    width: 7cm;
+    margin-left:37rem;
+}
+
+.login input{
+    margin-top:2rem;
+}
+
+.login button{
+    background-color: coral;
+}
