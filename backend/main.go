@@ -111,7 +111,7 @@ func main() {
 	http.HandleFunc("/ws", handleWebSocketConnection)
 
 	// will start the server now
-	err := http.ListenAndServe(":3007", nil)
+	err := http.ListenAndServe(":3001", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe", err)
 	}

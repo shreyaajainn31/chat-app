@@ -21,7 +21,7 @@ function Login() {
       return;
     }
 
-    const webSocket = new WebSocket("ws://localhost:3007/ws");
+    const webSocket = new WebSocket("ws://localhost:3001/ws");
     webSocket.onopen = () => {
       webSocket.send(JSON.stringify({ password }));
     };
