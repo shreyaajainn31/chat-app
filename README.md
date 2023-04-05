@@ -17,13 +17,13 @@
    ### Running the frontend
    Now, open the terminal run the commands in following order:
       
-      ```cd frontend ```
+      ```cd frontend```
       <br/>
-      ```npm install ```
+      ```npm install```
       <br/>
-      ```npm install react-router-dom ```
+      ```npm install react-router-dom```
       <br/>
-      ```npm start ```
+      ```npm start```
    
    
 Now open the project by navigating to: http://localhost:3001/
