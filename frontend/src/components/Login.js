@@ -21,7 +21,7 @@ function Login() {
       return;
     }
 
-    const webSocket = new WebSocket("ws://localhost:3001/ws");
+    const webSocket = new WebSocket("ws://localhost:3002/ws");
     webSocket.onopen = () => {
       webSocket.send(JSON.stringify({ password }));
     };
@@ -51,6 +51,7 @@ function Login() {
         placeholder="Room password"
         value={password}
         onChange={handlePassword}
+        type = "password"
       />
       <div className="error">{passwordError}</div>
       <br />

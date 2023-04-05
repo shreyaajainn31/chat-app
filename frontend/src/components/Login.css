@@ -13,3 +13,9 @@
 .login button{
     background-color: coral;
 }
+
+.error{
+    color: red;
+    font-weight: bold;
+    
+}
