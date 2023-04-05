@@ -9,16 +9,16 @@
    ### Running the backend
 
    Open the terminal and run the following commands:
-      ```go get github.com/gorilla/websocket
-      ```go run main.go
+      ```go get github.com/gorilla/websocket```
+      ```go run main.go```
 
    ### Running the frontend
    Now, open the terminal run the commands in following order:
       
-      ```cd frontend 
-      ```npm install 
-      ```npm install react-router-dom 
-      ```npm start 
+      ```cd frontend ```
+      ```npm install ```
+      ```npm install react-router-dom ```
+      ```npm start ```
    
    
 Now open the project by navigating to: http://localhost:3001/
