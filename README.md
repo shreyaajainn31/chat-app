@@ -5,14 +5,8 @@
    ### Clone the repository
    1. Clone the repository https://github.com/shreyaajainn31/chat-app.git 
    2. Open the folder in your designated IDE.
-
-   ### Running the backend
-
-   Open the terminal and run the following commands:
-      <br/>
-      ```go get github.com/gorilla/websocket```
-      <br/>
-      ```go run main.go```
+   3. Run frontend first, then backend.
+   4. Make sure to correct the port number.
 
    ### Running the frontend
    Now, open the terminal run the commands in following order:
@@ -24,6 +18,17 @@
       ```npm install react-router-dom```
       <br/>
       ```npm start```
+
+
+   ### Running the backend
+
+   Open the terminal and run the following commands:
+      <br/>
+      ```go get github.com/gorilla/websocket```
+      <br/>
+      ```go run main.go```
+
+  
    
    
 Now open the project by navigating to: http://localhost:3001/
